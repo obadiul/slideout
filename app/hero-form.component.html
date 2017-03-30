@@ -1,0 +1,43 @@
+<div class="container">
+  	<h3>
+	  {{title}}
+	</h3>
+
+	<button md-button md-raised-button (click)="toggleMenu(true)" class="myapp-button">
+		Open Contact Side Nav
+	</button>
+
+	<div class="response">
+		<h5>Response : </h5>		
+		<div class="data-response">
+			{{response | json}}
+		</div>
+	</div>
+   <!--- App Slide Coponent with TITLE / BODY / CONTENT as a Transclsion --> 
+	<app-slide-out-component *ngIf='menuSt' (saveData)= "saveData($event)">
+		<div class="slide-component-title">
+		  <div class="title">{{formTitle}}</div>
+		  <div class="close" (click)="toggleMenu(false)">x</div> 
+		</div>
+		<div class="slide-component-body">
+		
+		  	<div fxLayout="column" fxLayoutAlign="space-around center" >
+			
+					
+						  <input mdInput placeholder="First Name" value="" [(ngModel)]="formData.firstName" required>
+					
+						<br/>	<br/>
+						  <input mdInput placeholder="Last Name" value=""  [(ngModel)]="formData.lastName" required>
+					
+						<br/>	<br/>
+				
+						  <input mdInput placeholder="Message" value="" [(ngModel)]="formData.message" required>
+						
+			</div>
+			
+		</div>
+		<div class="slide-component-footer">
+		  <button md-button md-raised-button class="myapp-button" (click)= "saveData(formData)">Submit</button>
+		</div>
+	</app-slide-out-component>
+</div>
